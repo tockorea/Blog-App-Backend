@@ -9,6 +9,13 @@ router.get('/blogs', function(req, res, next) {
   }).catch(next);
 });
 
+// get a blog from the db
+router.get('/blogs/:id', function(req, res, next) {
+  Blog.findById({ _id: req.params.id }).then(function(blog) {
+    res.send(blog);
+  }).catch(next);
+});
+
 // add a new blog to the db
 router.post('/blogs', function(req, res, next) {
   Blog.create(req.body).then(function(blog) {
